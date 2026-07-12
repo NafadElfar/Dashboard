@@ -44,6 +44,9 @@ function CheckinBooking() {
   const { checkin, isCheckingIn } = useCheckin();
 
   const { settings, isLoading: isLoadingSettings } = useSettings();
+
+  if (isLoading || isLoadingSettings) return <Spinner />;
+
   const optionalBreakfastPrice =
     settings.breakfastPrice * numGuests * numNights;
 
@@ -62,7 +65,6 @@ function CheckinBooking() {
       checkin({ bookingId, breakfast: {} });
     }
   }
-  if (isLoading || isLoadingSettings) return <Spinner />;
   // We return a fragment so that these elements fit into the page's layout
   return (
     <>
