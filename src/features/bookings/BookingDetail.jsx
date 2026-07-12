@@ -27,14 +27,14 @@ const HeadingGroup = styled.div`
 `;
 
 function BookingDetail() {
-  const { bookings = [], isLoading } = useBooking();
+  const { bookings, isLoading } = useBooking();
 
   const moveBack = useMoveBack();
   const navigate = useNavigate();
   const { Checkout, isCheckingOut } = useCheckout();
   const { isDeleting, deleteBooking } = useDeleteBooking();
   if (isLoading) return <Spinner />;
-  // if (!booking) return <Empty resource="booking" />;
+  if (!bookings) return <Empty resource="booking" />;
 
   const statusToTagName = {
     unconfirmed: "blue",
